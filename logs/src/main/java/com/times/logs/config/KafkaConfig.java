@@ -46,7 +46,7 @@ public class KafkaConfig {
 		config.put(ConsumerConfig.GROUP_ID_CONFIG, "log-consumers");
 		config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-		config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+		config.put(JsonDeserializer.TRUSTED_PACKAGES, "com.times.logs.dto");
 		return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
 				new JsonDeserializer<>(LogEvent.class));
 	}

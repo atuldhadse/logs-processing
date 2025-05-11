@@ -1,6 +1,9 @@
 spring:
   application:
     name: logs
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
     
 server:
   port: 8088
