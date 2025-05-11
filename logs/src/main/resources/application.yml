@@ -4,3 +4,7 @@ spring:
     
 server:
   port: 8088
+
+logging:
+  level:
+    com.times.logs: INFO
