@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: logs
+    
+server:
+  port: 8088
