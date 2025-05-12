@@ -40,7 +40,7 @@ public class LogsController {
 					content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
 				) 
 			})
-	@PostMapping
+	@PostMapping("/push")
 	public ResponseEntity<ResponseDto> createLog(@Valid @RequestBody LogEvent logEvent) {
 		producer.sendLog(logEvent);
 		return ResponseEntity.status(HttpStatus.CREATED)
