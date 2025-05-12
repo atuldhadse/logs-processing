@@ -38,5 +38,7 @@ I have created 2 endpoints (currently, I have put them in different controllers)
 POST /logs/push - Push the logs
 GET /logs/search - Search the logs
 
-I have added Swagger to the project. Run the LogsApplication class and access it at localhost:8088/swagger-ui/index.html
-
+I have added Swagger to the project. Run the LogsApplication class and access it at 
+```bash
+localhost:8088/swagger-ui/index.html
+```
