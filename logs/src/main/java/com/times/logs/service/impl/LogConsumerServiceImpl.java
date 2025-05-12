@@ -18,7 +18,11 @@ public class LogConsumerServiceImpl implements ILogConsumerService {
 	private IElasticsearchService elasticService;
 
 	@Override
-	@KafkaListener(topics = "logs-topic", groupId = "log-consumers", containerFactory = "logKafkaListenerContainerFactory")
+	@KafkaListener(
+		topics = "logs-topic", 
+		groupId = "log-consumers", 
+		containerFactory = "logKafkaListenerContainerFactory"
+	)
 	public void consume(LogEvent logEvent) {
 		elasticService.indexLog(logEvent);
 		log.info("event consumed by the consumer {}", logEvent.toString());

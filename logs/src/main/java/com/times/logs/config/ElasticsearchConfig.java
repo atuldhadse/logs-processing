@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
@@ -15,7 +14,7 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 
 @Configuration
 public class ElasticsearchConfig {
-
+	
 	@Bean
     public RestClient restClient() {
         return RestClient.builder(
@@ -24,8 +23,7 @@ public class ElasticsearchConfig {
     }
 
 	@Bean
-    public ElasticsearchClient elasticsearchClient(RestClient restClient) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ElasticsearchClient elasticsearchClient(RestClient restClient, ObjectMapper objectMapper) {
         objectMapper.registerModule(new JavaTimeModule());
         JacksonJsonpMapper mapper = new JacksonJsonpMapper(objectMapper);
         RestClientTransport transport = new RestClientTransport(

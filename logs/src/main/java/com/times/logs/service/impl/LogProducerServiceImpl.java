@@ -1,5 +1,6 @@
 package com.times.logs.service.impl;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,13 @@ public class LogProducerServiceImpl implements ILogProducerService {
 	public void sendLog(LogEvent logEvent) {
 		CompletableFuture<SendResult<String, LogEvent>> future = kafkaTemplate.send(TOPIC, logEvent);
 		future.whenComplete((result, ex) -> {
-			int partition = result.getRecordMetadata().partition();
-			long offset = result.getRecordMetadata().offset();
-			log.info("log pushed to kafka at partition {} and offset {}", partition, offset);
+			if (!Optional.ofNullable(ex).isPresent()) {
+				int partition = result.getRecordMetadata().partition();
+				long offset = result.getRecordMetadata().offset();
+				log.info("log pushed to kafka at partition {} and offset {}", partition, offset);
+			} else {
+				log.info("error in pushing log event to kafka");
+			}
 		});
 	}
 
